@@ -1,15 +1,25 @@
 package ru.sbrf.person;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class Person implements Cloneable {
+public class Person implements Cloneable, Comparable<Person> {
     private String name;
     private int age;
 
-    private static List<Person> allPersons = new ArrayList<>();
+    public String getName() {
+        return name;
+    }
 
-    public static void showAll(){
+    public int getAge() {
+        return age;
+    }
+
+    public static List<Person> allPersons = new ArrayList<>();
+
+    public static void showAll() {
+        // Collections.sort(allPersons);
         for (Person person : allPersons) {
             person.show();
         }
@@ -22,12 +32,23 @@ public class Person implements Cloneable {
         allPersons.add(this);
     }
 
-    public void show(){
-        System.out.printf("My name is %s and my age is %d\n", this.name, this.age);
+    public void show() {
+        System.out.println(this.toString());
     }
 
     @Override
-    public Person clone() throws CloneNotSupportedException {
+    public Person clone() {
         return new Person(this.name, this.age);
     }
+
+    @Override
+    public String toString() {
+        return String.format("My name is %s and my age is %d", this.name, this.age);
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        return this.name.compareTo(o.name);
+    }
 }
+

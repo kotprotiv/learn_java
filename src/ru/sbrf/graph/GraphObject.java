@@ -38,5 +38,13 @@ public abstract class GraphObject {
         }
     }
 
+    public static void clearScene() {
+        scene.clear();
+    }
+
+    public void deleteFromScene() {
+        scene.remove(this);
+    }
+
     public abstract void draw();
 }

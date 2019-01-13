@@ -8,6 +8,8 @@ import ru.sbrf.singleton.Singleton;
 import ru.sbrf.banking.BankAccount;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.UnaryOperator;
 
@@ -35,14 +37,23 @@ public class Main {
         */
 
         // person
-        /*
-        Person p1 = new Person("Ian", 22);
-        Person p2 = new Person("John", 45);
+
+        Person p1 = new Person("Yannis", 22);
+        Person p2 = new Person("Liam", 45);
         Person p3 = new Person("Jennies", 13);
         Person p4 = new Person("Mike", 52);
 
+
+        Collections.sort(Person.allPersons,
+                new Comparator<Person>() {
+                    @Override
+                    public int compare(Person o1, Person o2) {
+                        return o1.getAge() - o2.getAge();
+                    }
+                }
+        );
+
         Person.showAll();
-        */
 
         // singleton
         /*
@@ -66,7 +77,7 @@ public class Main {
 
         // electricity
 //        System.out.println(Main.doSomething(String::toUpperCase, "test"));
-
+        /*
         Switcher switcher = new Switcher();
 
         Lamp lamp1 = new Lamp(1);
@@ -84,5 +95,12 @@ public class Main {
         switcher.addElectricityListener(object1);
 
         switcher.switchOn();
+
+        */
+
     }
 }
+
+
+
+
