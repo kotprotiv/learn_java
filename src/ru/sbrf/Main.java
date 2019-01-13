@@ -3,14 +3,14 @@ package ru.sbrf;
 import ru.sbrf.electricity.*;
 
 import ru.sbrf.graph.*;
-import ru.sbrf.person.Person;
+import ru.sbrf.person.*;
 import ru.sbrf.singleton.Singleton;
 import ru.sbrf.banking.BankAccount;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 import java.util.function.UnaryOperator;
 
 public class Main {
@@ -19,7 +19,7 @@ public class Main {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         // graph
         /*
         Circle c1 = new Circle(10, 10, 15, "red");
@@ -54,6 +54,14 @@ public class Main {
         );
 
         Person.showAll();
+
+        for (Person person : Person.allPersons) {
+            PersonSerialization.savePerson(person, new File("../" + person.getName() + ".bin"));
+        }
+
+        Person pNew = PersonSerialization.loadPerson(new File("../Yannis.bin"));
+        pNew.show();
+
 
         // singleton
         /*
@@ -98,6 +106,28 @@ public class Main {
 
         */
 
+
+        // files
+        /*
+        File directory = new File("../OOP");
+        if (!directory.exists()) {
+            try {
+                directory.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        File[] allFiles = directory.listFiles(f -> f.getName().contains("r"));
+
+        for (File f : allFiles) {
+            System.out.println(f.getName());
+        }
+
+        FileWriter fw = new FileWriter("../file.txt");
+        fw.write("yo momma so fat ");
+        fw.close();
+        */
     }
 }
 

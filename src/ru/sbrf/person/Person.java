@@ -1,12 +1,14 @@
 package ru.sbrf.person;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Person implements Cloneable, Comparable<Person> {
+public class Person implements Cloneable, Comparable<Person>, Serializable {
     private String name;
     private int age;
+    private transient double random = Math.random();
 
     public String getName() {
         return name;
@@ -43,7 +45,7 @@ public class Person implements Cloneable, Comparable<Person> {
 
     @Override
     public String toString() {
-        return String.format("My name is %s and my age is %d", this.name, this.age);
+        return String.format("My name is %s and my age is %d (random is %f)", this.name, this.age, this.random);
     }
 
     @Override
